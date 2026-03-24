@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yoel & Arlin</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: #fff0f5;
+    text-align: center;
+    color: #333;
+}
+
+header {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+    url('https://images.unsplash.com/photo-1519741497674-611481863552');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 65px;
+    margin: 0;
+}
+
+h2 {
+    font-weight: normal;
+}
+
+.section {
+    padding: 50px 20px;
+}
+
+.countdown {
+    font-size: 28px;
+    margin-top: 15px;
+}
+
+.button {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #e91e63;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    margin-top: 15px;
+}
+
+.footer {
+    background: #f8d7da;
+    padding: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Yoel & Arlin</h1>
+    <h2>¡Nos casamos!</h2>
+</header>
+
+<div class="section">
+    <h2>Con la bendición de Dios</h2>
+    <p><strong>11 de Abril 2026</strong></p>
+    <p>Iglesia Llanos de Santa Lucía</p>
+
+    <div class="countdown" id="countdown"></div>
+
+    <a class="button" href="https://maps.google.com/?q=Iglesia Llanos de Santa Lucia" target="_blank">
+        Ver ubicación 📍
+    </a>
+</div>
+
+<div class="section">
+    <h2>“El amor nunca deja de ser”</h2>
+    <p>1 Corintios 13:8</p>
+</div>
+
+<div class="footer">
+    <p>Te esperamos para compartir este momento especial 💕</p>
+</div>
+
+<script>
+const countdown = document.getElementById("countdown");
+const weddingDate = new Date("April 11, 2026 15:00:00").getTime();
+
+setInterval(() => {
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+    countdown.innerHTML = "Faltan " + days + " días y " + hours + " horas 💖";
+}, 1000);
+</script>
+
+</body>
+</html>

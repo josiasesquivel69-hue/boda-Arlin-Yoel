@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invitación de Boda</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #e0f7f1;
+    color: #004d40;
+    overflow-x: hidden;
+  }
+
+  /* Sobre inicial */
+  .sobre {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 6rem;
+    font-weight: bold;
+    letter-spacing: 2rem;
+    background: linear-gradient(to right, #a7ffeb, #64ffda);
+    color: white;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Animación de sobre abierto */
+  .sobre::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom right, #a7ffeb, #64ffda);
+    transform-origin: top;
+    transition: transform 1s ease;
+    z-index: 1;
+  }
+
+  .sobre.abierto::after {
+    transform: rotateX(90deg);
+  }
+
+  /* Pantalla principal */
+  .principal {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Foto principal con nombres y fecha */
+  .foto-principal {
+    position: relative;
+    width: 80%;
+    max-width: 800px;
+    margin: 30px auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+  .foto-principal img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .texto-foto {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #004d40;
+    font-weight: bold;
+    text-shadow: 1px 1px 5px rgba(255,255,255,0.7);
+  }
+  .texto-foto h1 { margin: 0; font-size: 2.5rem; }
+  .texto-foto p { margin: 5px 0 0 0; font-size: 1.5rem; }
+
+  /* Slideshow */
+  .slideshow-container {
+    position: relative;
+    max-width: 800px;
+    margin: 50px auto;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+  .slides { display: none; width: 100%; height: 500px; object-fit: cover; }
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    margin-top: -25px;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 2rem;
+    border-radius: 50%;
+    background: rgba(0,77,64,0.3);
+    user-select: none;
+    transition: background 0.3s;
+  }
+  .prev:hover, .next:hover { background: rgba(0,77,64,0.6); }
+  .prev { left: 10px; }
+  .next { right: 10px; }
+
+  /* Mensaje final */
+  .mensaje {
+    text-align: center;
+    padding: 80px 20px;
+    font-size: 1.5rem;
+  }
+  .mensaje p { margin: 20px 0; }
+  .mensaje .contacto { font-weight: bold; color: #004d40; }
+
+  /* Música */
+  audio { display: none; }
+
+  /* Responsivo */
+  @media(max-width: 900px) {
+    .slides, .foto-principal img { height: 300px; }
+    .texto-foto h1 { font-size: 2rem; }
+    .texto-foto p { font-size: 1.2rem; }
+    .sobre { font-size: 4rem; letter-spacing: 1rem; }
+  }
+  @media(max-width: 500px) {
+    .slides, .foto-principal img { height: 200px; }
+    .texto-foto h1 { font-size: 1.5rem; }
+    .texto-foto p { font-size: 1rem; }
+    .sobre { font-size: 3rem; letter-spacing: 0.5rem; }
+    .mensaje { font-size: 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Sobre inicial -->
+<div class="sobre" id="sobre">A & Y</div>
+
+<!-- Pantalla principal -->
+<div class="principal" id="principal">
+
+  <!-- Foto principal con nombres y fecha -->
+  <div class="foto-principal">
+    <img src="foto1.jpeg" alt="Foto principal">
+    <div class="texto-foto">
+      <h1>Arlin & Yoel</h1>
+      <p>11/04/26</p>
+    </div>
+  </div>
+
+  <!-- Slideshow -->
+  <div class="slideshow-container">
+    <img class="slides" src="foto2.jpeg" alt="Foto 2">
+    <img class="slides" src="foto3.jpeg" alt="Foto 3">
+    <!-- más fotos si quieres -->
+
+    <span class="prev" onclick="changeSlide(-1)">&#10094;</span>
+    <span class="next" onclick="changeSlide(1)">&#10095;</span>
+  </div>
+
+  <!-- Mensaje final -->
+  <div class="mensaje">
+    <p>Su compañía es nuestro regalo más preciado,</p>
+    <p>sin embargo, cualquier muestra de cariño hacia nosotros puede realizarla a través de:</p>
+    <p class="contacto">88869869</p>
+    <p>O en una cajita que estará en la iglesia el día de la boda.</p>
+  </div>
+
+</div>
+
+<!-- Música -->
+<audio autoplay loop>
+  <source src="musica.mp3" type="audio/mpeg">
+  Tu navegador no soporta audio.
+</audio>
+
+<script>
+  const sobre = document.getElementById("sobre");
+  const principal = document.getElementById("principal");
+
+  sobre.addEventListener("click", () => {
+    sobre.classList.add("abierto");
+    // Espera 1 segundo para mostrar principal
+    setTimeout(() => {
+      sobre.style.display = "none";
+      principal.style.display = "flex";
+    }, 1000);
+  });
+
+  // Slideshow
+  let slideIndex = 0;
+  const slides = document.getElementsByClassName("slides");
+
+  function showSlide(n) {
+    if (n >= slides.length) slideIndex = 0;
+    if (n < 0) slideIndex = slides.length - 1;
+    for (let i = 0; i < slides.length; i++) slides[i].style.display = "none";
+    slides[slideIndex].style.display = "block";
+  }
+
+  function changeSlide(n) {
+    slideIndex += n;
+    showSlide(slideIndex);
+  }
+
+  function autoSlide() {
+    slideIndex++;
+    showSlide(slideIndex);
+    setTimeout(autoSlide, 4000);
+  }
+
+  showSlide(slideIndex);
+  autoSlide();
+</script>
+
+</body>
+</html>

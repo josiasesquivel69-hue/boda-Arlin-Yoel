@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yoel & Arlin</title>
+<title>Arlin & Yoel</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat&display=swap" rel="stylesheet">
 
@@ -11,7 +11,7 @@
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
-    background: #fff0f5;
+    background: #f0fff9;
     text-align: center;
     color: #333;
 }
@@ -19,7 +19,7 @@ body {
 header {
     height: 100vh;
     background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
-    url('https://images.unsplash.com/photo-1519741497674-611481863552');
+    url('foto1.jpg');
     background-size: cover;
     background-position: center;
     color: white;
@@ -30,7 +30,7 @@ header {
 
 h1 {
     font-family: 'Great Vibes', cursive;
-    font-size: 65px;
+    font-size: 70px;
     margin: 0;
 }
 
@@ -39,62 +39,112 @@ h2 {
 }
 
 .section {
-    padding: 50px 20px;
+    padding: 60px 20px;
 }
 
 .countdown {
     font-size: 28px;
-    margin-top: 15px;
+    color: #2e7d6b;
 }
 
 .button {
     display: inline-block;
     padding: 12px 20px;
-    background: #e91e63;
+    background: #6ecfb5;
     color: white;
     text-decoration: none;
     border-radius: 25px;
     margin-top: 15px;
 }
 
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.gallery img {
+    width: 300px;
+    margin: 10px;
+    border-radius: 15px;
+}
+
 .footer {
-    background: #f8d7da;
+    background: #d9f7ef;
     padding: 20px;
+}
+
+/* Botón música */
+.music-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 12px;
+    border-radius: 50%;
+    background: #6ecfb5;
+    color: white;
+    border: none;
+    font-size: 18px;
 }
 </style>
 </head>
 
 <body>
 
+<!-- BOTÓN MÚSICA -->
+<button class="music-btn" onclick="playMusic()">🎵</button>
+
+<iframe id="music" width="0" height="0"
+src=""
+frameborder="0" allow="autoplay"></iframe>
+
 <header>
-    <h1>Yoel & Arlin</h1>
+    <h1>Arlin & Yoel</h1>
     <h2>¡Nos casamos!</h2>
 </header>
 
 <div class="section">
     <h2>Con la bendición de Dios</h2>
     <p><strong>11 de Abril 2026</strong></p>
+    <p><strong>2:00 PM</strong></p>
     <p>Iglesia Llanos de Santa Lucía</p>
 
     <div class="countdown" id="countdown"></div>
 
-    <a class="button" href="https://maps.google.com/?q=Iglesia Llanos de Santa Lucia" target="_blank">
+    <a class="button" href="https://maps.app.goo.gl/oAt9cJrV2vbocTCaA?g_st=ic" target="_blank">
         Ver ubicación 📍
     </a>
 </div>
 
 <div class="section">
-    <h2>“El amor nunca deja de ser”</h2>
-    <p>1 Corintios 13:8</p>
+    <h2>“El amor es paciente, es bondadoso… todo lo soporta, todo lo cree, todo lo espera.”</h2>
+    <p>1 Corintios 13</p>
+</div>
+
+<div class="section">
+    <h2>
+    Con mucho cariño te invitamos a acompañarnos en este momento especial, 
+    donde celebraremos nuestra unión en la casa de Dios mediante la sagrada misa.
+    </h2>
+</div>
+
+<div class="section gallery">
+    <img src="P1012873.jpg">
+    <img src="P1012844.jpg">
+    <img src="P1012918.jpg">
+    <img src="P1012926.jpg">
+    <img src="P1012937.jpg">
+    <img src="P1012942.jpg">
 </div>
 
 <div class="footer">
-    <p>Te esperamos para compartir este momento especial 💕</p>
+    <p>Será un honor contar con tu presencia 💚</p>
 </div>
 
 <script>
+// Cuenta regresiva
 const countdown = document.getElementById("countdown");
-const weddingDate = new Date("April 11, 2026 15:00:00").getTime();
+const weddingDate = new Date("April 11, 2026 14:00:00").getTime();
 
 setInterval(() => {
     const now = new Date().getTime();
@@ -103,8 +153,14 @@ setInterval(() => {
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 
-    countdown.innerHTML = "Faltan " + days + " días y " + hours + " horas 💖";
+    countdown.innerHTML = "Faltan " + days + " días y " + hours + " horas 💚";
 }, 1000);
+
+// Música
+function playMusic() {
+  document.getElementById("music").src =
+  "https://www.youtube.com/embed/rtOvBOTyX00?autoplay=1&loop=1&playlist=rtOvBOTyX00";
+}
 </script>
 
 </body>

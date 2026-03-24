@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arlin & Yoel</title>
+<title> Arlin &  Yoel </title>
 
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat&display=swap" rel="stylesheet">
 
@@ -19,7 +19,7 @@ body {
 header {
     height: 100vh;
     background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
-    url(foto1.jpeg);
+    url( foto1.jpeg );
     background-size: cover;
     background-position: center;
     color: white;
@@ -106,31 +106,45 @@ h2 {
 </div>
 
 <div class="section gallery">
-    <img src="foto1.jpeg">
-    <img src="foto2.jpeg">
-    <img src="foto3.jpeg">
-    <img src="foto4.jpeg">
-    <img src="foto5.jpeg">
-    <img src="foto6.jpeg">
+    <img src="foto1.jpg">
+    <img src="foto2.jpg">
+    <img src="foto3.jpg">
+    <img src="foto4.jpg">
+    <img src="foto5.jpg">
+    <img src="foto6.jpg">
 </div>
 
 <div class="footer">
-    <p>Su presencia es nuestro regalo mas grande , sin embargo, cualquier muestra de amor  hacia nosotros puede realizarla al 88869869 o entregarla en una cajita que va a estar disponible el dia de la boda en la iglesia   💚</p>
+    <p>Será un honor contar con tu presencia 💚</p>
 </div>
 
+<!-- Música de YouTube -->
+<iframe width="0" height="0" src="https://www.youtube.com/embed/p_1Osm5xE5Y?autoplay=1&loop=1&playlist=p_1Osm5xE5Y" frameborder="0" allow="autoplay" allow="encrypted-media"></iframe>
+
 <script>
+// Cuenta regresiva con días, horas, minutos y segundos
 const countdown = document.getElementById("countdown");
 const weddingDate = new Date("April 11, 2026 14:00:00").getTime();
 
-setInterval(() => {
+function updateCountdown() {
     const now = new Date().getTime();
     const distance = weddingDate - now;
 
+    if(distance < 0){
+        countdown.innerHTML = "¡Estamos casados!";
+        return;
+    }
+
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    countdown.innerHTML = "Faltan " + days + " días y " + hours + " horas 💚";
-}, 1000);
+    countdown.innerHTML = `Faltan ${days} días, ${hours} horas, ${minutes} minutos y ${seconds} segundos 💚`;
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
 </script>
 
 </body>

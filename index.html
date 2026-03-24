@@ -9,59 +9,65 @@
 
 <style>
 body {
-    
     margin: 0;
     font-family: 'Montserrat', sans-serif;
     background: #f0fff9;
-    text-align: center;
     color: #333;
+    text-align: center;
 }
 
 header {
     height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
     url('foto1.jpeg');
     background-size: cover;
     background-position: center;
-    color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    color: white;
 }
 
-h1 {
+.initials {
     font-family: 'Great Vibes', cursive;
-    font-size: 70px;
-    margin: 0;
+    font-size: 90px;
 }
 
-h2 {
-    font-weight: normal;
+.names {
+    font-size: 22px;
+    letter-spacing: 3px;
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.box {
+    background: #6ecfb5;
+    padding: 15px;
+    border-radius: 10px;
+    color: white;
+    width: 70px;
+}
+
+.box span {
+    font-size: 24px;
+    font-weight: bold;
 }
 
 .section {
     padding: 60px 20px;
 }
 
-.countdown {
-    font-size: 28px;
-    color: #2e7d6b;
-}
-
 .button {
-    display: inline-block;
     padding: 12px 20px;
     background: #6ecfb5;
     color: white;
     text-decoration: none;
     border-radius: 25px;
-    margin-top: 15px;
-}
-
-.gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
 }
 
 .gallery img {
@@ -69,48 +75,32 @@ h2 {
     margin: 10px;
     border-radius: 15px;
 }
-
-.footer {
-    background: #d9f7ef;
-    padding: 20px;
-}
-
-/* Botón música */
-.music-btn {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 12px;
-    border-radius: 50%;
-    background: #6ecfb5;
-    color: white;
-    border: none;
-    font-size: 18px;
-}
 </style>
 </head>
 
 <body>
 
-<!-- BOTÓN MÚSICA -->
-<button class="music-btn" onclick="playMusic()">🎵</button>
-
-<iframe id="music" width="0" height="0"
-src=""
+<!-- MÚSICA -->
+<iframe width="0" height="0"
+src="https://www.youtube.com/embed/rtOvBOTyX00?autoplay=1&mute=1&loop=1&playlist=rtOvBOTyX00"
 frameborder="0" allow="autoplay"></iframe>
 
 <header>
-    <h1>Arlin & Yoel</h1>
-    <h2>¡Nos casamos!</h2>
+    <div class="initials">A & Y</div>
+    <div class="names">ARLIN & YOEL</div>
+
+    <div class="countdown">
+        <div class="box"><span id="days"></span><br>Días</div>
+        <div class="box"><span id="hours"></span><br>Horas</div>
+        <div class="box"><span id="minutes"></span><br>Min</div>
+        <div class="box"><span id="seconds"></span><br>Seg</div>
+    </div>
 </header>
 
 <div class="section">
-    <h2>Con la bendición de Dios</h2>
-    <p><strong>11 de Abril 2026</strong></p>
-    <p><strong>2:00 PM</strong></p>
+    <h2>11 de Abril 2026</h2>
+    <p>2:00 PM</p>
     <p>Iglesia Llanos de Santa Lucía</p>
-
-    <div class="countdown" id="countdown"></div>
 
     <a class="button" href="https://maps.app.goo.gl/oAt9cJrV2vbocTCaA?g_st=ic" target="_blank">
         Ver ubicación 📍
@@ -118,15 +108,8 @@ frameborder="0" allow="autoplay"></iframe>
 </div>
 
 <div class="section">
-    <h2>“El amor es paciente, es bondadoso… todo lo soporta, todo lo cree, todo lo espera.”</h2>
+    <h2>“El amor todo lo cree, todo lo espera, todo lo soporta.”</h2>
     <p>1 Corintios 13</p>
-</div>
-
-<div class="section">
-    <h2>
-    Con mucho cariño te invitamos a acompañarnos en este momento especial, 
-    donde celebraremos nuestra unión en la casa de Dios mediante la sagrada misa.
-    </h2>
 </div>
 
 <div class="section gallery">
@@ -138,30 +121,42 @@ frameborder="0" allow="autoplay"></iframe>
     <img src="foto6.jpeg">
 </div>
 
-<div class="footer">
-    <p>Será un honor contar con tu presencia 💚</p>
+<div class="section">
+    <h2>Regalo</h2>
+    <p>
+    Su compañía es nuestro regalo más preciado 💚<br><br>
+    Sin embargo, cualquier muestra de cariño hacia nosotros puede realizarla a través de:
+    </p>
+
+    <p style="font-size:20px; font-weight:bold;">
+    8886-9869 sinpe movil
+    </p>
+
+    <p>
+    O bien, en una cajita que estará disponible en la iglesia el día de la boda.
+    </p>
 </div>
 
 <script>
-// Cuenta regresiva
-const countdown = document.getElementById("countdown");
 const weddingDate = new Date("April 11, 2026 14:00:00").getTime();
 
 setInterval(() => {
     const now = new Date().getTime();
     const distance = weddingDate - now;
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    document.getElementById("days").innerHTML =
+        Math.floor(distance / (1000 * 60 * 60 * 24));
 
-    countdown.innerHTML = "Faltan " + days + " días y " + hours + " horas 💚";
+    document.getElementById("hours").innerHTML =
+        Math.floor((distance / (1000 * 60 * 60)) % 24);
+
+    document.getElementById("minutes").innerHTML =
+        Math.floor((distance / (1000 * 60)) % 60);
+
+    document.getElementById("seconds").innerHTML =
+        Math.floor((distance / 1000) % 60);
+
 }, 1000);
-
-// Música
-function playMusic() {
-  document.getElementById("music").src =
-  "https://youtu.be/mk3XycambgI?si=hFg3SvSG68XJry2X";
-}
 </script>
 
 </body>

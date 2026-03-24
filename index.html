@@ -159,18 +159,19 @@ h2 {
     </p>
 </div>
 
-<!-- 🎵 Música -->
-<audio id="music" loop>
-  <source src= teamo.mp3 type="audio/mpeg">
-</audio>
-
-<button id="playBtn" class="music-btn">🎶</button>
-
 <script>
-// 🎵 Control de música
+// 🎵 Música
 const music = document.getElementById("music");
 const playBtn = document.getElementById("playBtn");
 
+// 🔥 activar música con cualquier clic en la página
+document.addEventListener("click", () => {
+    if (music.paused) {
+        music.play().catch(() => {});
+    }
+}, { once: true });
+
+// botón manual
 playBtn.addEventListener("click", () => {
     if(music.paused){
         music.play();

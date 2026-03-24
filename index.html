@@ -1,55 +1,66 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arlin & Yoel</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Arlin & Yoel</title>
+        <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat&display=swap" rel="stylesheet">
+        <style> body { margin: 0; font-family: 'Montserrat', sans-serif; background: #f0fff9; text-align: center; color: #333; }
+            
+<!-- Música -->
+<audio id="music" loop>
+  <source src="teamo.mp3" type="audio/mpeg">
+</audio>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat&display=swap" rel="stylesheet">
+<button id="playBtn" class="music-btn">🎶</button>
 
 <style>
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
-    background: #f0fff9;
+    background: linear-gradient(to bottom, #f0fff9, #d9f7ef);
     text-align: center;
     color: #333;
 }
 
-
-
-    
+/* HEADER */
 header {
     height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
-    url( foto1.jpeg );
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+    url("foto1.jpeg");
     background-size: cover;
     background-position: center;
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    animation: fadeIn 2s ease-in;
 }
 
 h1 {
     font-family: 'Great Vibes', cursive;
     font-size: 70px;
     margin: 0;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
 }
 
 h2 {
     font-weight: normal;
 }
 
+/* SECCIONES */
 .section {
     padding: 60px 20px;
+    animation: fadeUp 1s ease;
 }
 
 .countdown {
     font-size: 28px;
     color: #2e7d6b;
+    font-weight: bold;
 }
 
+/* BOTÓN */
 .button {
     display: inline-block;
     padding: 12px 20px;
@@ -58,78 +69,77 @@ h2 {
     text-decoration: none;
     border-radius: 25px;
     margin-top: 15px;
+    transition: 0.3s;
 }
 
-.gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+.button:hover {
+    background: #4fb89c;
+    transform: scale(1.05);
 }
 
+/* GALERÍA */
 .gallery img {
     width: 300px;
     margin: 10px;
     border-radius: 15px;
+    transition: 0.3s;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+/* FOOTER */
 .footer {
     background: #d9f7ef;
     padding: 20px;
 }
+
+/* BOTÓN MÚSICA */
+.music-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #6ecfb5;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 25px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* ANIMACIONES */
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeUp {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
 </style>
-</head>
-
-<body>
-
-<header>
-    <h1>Arlin & Yoel</h1>
-    <h2>¡Nos casamos!</h2>
-</header>
-
-<div class="section">
-    <h2>Con la bendición de Dios</h2>
-    <p><strong>11 de Abril 2026</strong></p>
-    <p><strong>2:00 PM</strong></p>
-    <p>Iglesia Llanos de Santa Lucía</p>
-
-    <div class="countdown" id="countdown"></div>
-
-    <a class="button" href="https://maps.app.goo.gl/oAt9cJrV2vbocTCaA?g_st=ic" target="_blank">
-        Ver ubicación 📍
-    </a>
-</div>
-
-<div class="section">
-    <h2>“Porque cada historia de amor merece ser celebrada, te invitamos a compartir con nosotros el inicio de nuestro para siempre”</h2>
-   
-</div>
-
-<div class="section">
-    <h2>Con mucho cariño te invitamos a acompañarnos en este momento especial, donde celebraremos nuestra unión en la casa de Dios mediante la sagrada misa.</h2>
-</div>
-
-<div class="section gallery">
-    <img src= foto1.jpeg >
-    <img src="foto2.jpeg">
-    <img src="foto3.jpeg">
-    <img src="foto4.jpeg">
-    <img src="foto5.jpeg">
-    <img src="foto6.jpeg">
-</div>
-
-<div class="footer">
-    <p>Nuestro regalo más valioso es que nos acompañen en este día tan especial, compartiendo con nosotros la alegría de nuestro amor.
-Si desean hacernos una muestra de cariño, podrán hacerlo mediante Sinpe móvil al 8886‑9869, o entregarlo en un sobre en la cajita que estará disponible en la iglesia el día de la boda.
-        Su presencia es el mayor de los regalos, y todo detalle que nos den será recibido con mucho amor y gratitud 💚</p>
-</div>
-
-<!-- Música mp3 -->
-<audio autoplay loop>
-  <source src= teamo.mp3 type="audio/mpeg">
-</audio>
 
 <script>
-// Cuenta regresiva con días, horas, minutos y segundos
+// 🎵 Música
+const music = document.getElementById("music");
+const playBtn = document.getElementById("playBtn");
+
+playBtn.addEventListener("click", () => {
+    if(music.paused){
+        music.play();
+        playBtn.innerHTML = "⏸️";
+    } else {
+        music.pause();
+        playBtn.innerHTML = "🎶";
+    }
+});
+
+// ⏳ Cuenta regresiva (la tuya intacta)
 const countdown = document.getElementById("countdown");
 const weddingDate = new Date("April 11, 2026 14:00:00").getTime();
 
@@ -153,6 +163,3 @@ function updateCountdown() {
 setInterval(updateCountdown, 1000);
 updateCountdown();
 </script>
-
-</body>
-</html>

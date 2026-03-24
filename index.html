@@ -160,14 +160,18 @@ h2 {
 </div>
 
 <script>
-<!-- 🎵 Música -->
-<audio id="music" loop>
-  <source src="teamo.mp3" type="audio/mpeg">
-</audio>
-
+<!-- 🎵 Música YouTube -->
 <div id="musicOverlay">
-    <button id="startMusic">💚 Tocar música</button>
+    <button id="startMusic">💚 Entrar con música</button>
 </div>
+
+<iframe id="youtubeMusic"
+    width="0"
+    height="0"
+    src=""
+    frameborder="0"
+    allow="autoplay">
+</iframe>
 
 <style>
 #musicOverlay {
@@ -176,7 +180,7 @@ h2 {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0,0,0,0.7);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -195,14 +199,14 @@ h2 {
 </style>
 
 <script>
-const music = document.getElementById("music");
-const startBtn = document.getElementById("startMusic");
-const overlay = document.getElementById("musicOverlay");
+const btn = document.getElementById("startMusic");
+const iframe = document.getElementById("youtubeMusic");
 
-startBtn.addEventListener("click", () => {
-    music.play();
-    overlay.style.display = "none";
+btn.addEventListener("click", () => {
+    iframe.src = "https://www.youtube.com/embed/n2Cld9aU1vU?autoplay=1&loop=1&playlist=n2Cld9aU1vU";
+    document.getElementById("musicOverlay").style.display = "none";
 });
+</script>
 </script>
 
 // ⏳ Cuenta regresiva

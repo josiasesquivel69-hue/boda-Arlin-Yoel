@@ -5,86 +5,72 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Invitación de Boda</title>
 <style>
-
-
-
-  
   body {
-    margin: 0;
+    margin:0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #e0f7f1;
-    color: #004d40;
-    overflow-x: hidden;
+    overflow-x:hidden;
+    background:#e0f7f1;
+    color:#004d40;
   }
 
   /* Sobre inicial */
-  .sobre {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 6rem;
-    font-weight: bold;
-    letter-spacing: 2rem;
+  #sobre {
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    position:relative;
+    perspective:1000px;
+  }
+
+  .sobre-img {
+    width:300px;
+    height:200px;
     background: linear-gradient(to right, #a7ffeb, #64ffda);
-    color: white;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-  }
-
-  /* Animación de sobre abierto */
-  .sobre::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom right, #a7ffeb, #64ffda);
-    transform-origin: top;
+    border-radius:15px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:4rem;
+    font-weight:bold;
+    color:white;
+    transform-style: preserve-3d;
     transition: transform 1s ease;
-    z-index: 1;
-  }
-
-  .sobre.abierto::after {
-    transform: rotateX(90deg);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
   }
 
   /* Pantalla principal */
-  .principal {
-    display: none;
-    flex-direction: column;
-    align-items: center;
+  #principal {
+    display:none;
+    flex-direction:column;
+    align-items:center;
   }
 
-  /* Foto principal con nombres y fecha */
+  /* Foto principal ocupando toda la pantalla */
   .foto-principal {
     position: relative;
-    width: 80%;
-    max-width: 800px;
-    margin: 30px auto;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    width:100%;
+    max-height:90vh;
+    overflow:hidden;
   }
   .foto-principal img {
-    width: 100%;
-    height: auto;
-    display: block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
   }
   .texto-foto {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    color: #004d40;
-    font-weight: bold;
-    text-shadow: 1px 1px 5px rgba(255,255,255,0.7);
+    position:absolute;
+    bottom:30px;
+    left:50%;
+    transform:translateX(-50%);
+    text-align:center;
+    color:white;
+    font-weight:bold;
+    text-shadow:2px 2px 10px rgba(0,0,0,0.7);
   }
-  .texto-foto h1 { margin: 0; font-size: 2.5rem; }
-  .texto-foto p { margin: 5px 0 0 0; font-size: 1.5rem; }
+  .texto-foto h1 { font-size:3rem; margin:0; }
+  .texto-foto p { font-size:2rem; margin:5px 0 0 0; }
 
   /* Slideshow */
   .slideshow-container {
@@ -95,62 +81,43 @@
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
   }
-  .slides { display: none; width: 100%; height: 500px; object-fit: cover; }
+  .slides { display:none; width:100%; height:500px; object-fit:cover; }
   .prev, .next {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    margin-top: -25px;
-    padding: 10px;
-    color: white;
-    font-weight: bold;
-    font-size: 2rem;
-    border-radius: 50%;
+    cursor:pointer;
+    position:absolute;
+    top:50%;
+    margin-top:-25px;
+    padding:10px;
+    color:white;
+    font-weight:bold;
+    font-size:2rem;
+    border-radius:50%;
     background: rgba(0,77,64,0.3);
-    user-select: none;
+    user-select:none;
     transition: background 0.3s;
   }
   .prev:hover, .next:hover { background: rgba(0,77,64,0.6); }
-  .prev { left: 10px; }
-  .next { right: 10px; }
+  .prev { left:10px; }
+  .next { right:10px; }
 
   /* Mensaje final */
-  .mensaje {
-    text-align: center;
-    padding: 80px 20px;
-    font-size: 1.5rem;
-  }
-  .mensaje p { margin: 20px 0; }
-  .mensaje .contacto { font-weight: bold; color: #004d40; }
+  .mensaje { text-align:center; padding:80px 20px; font-size:1.5rem; }
+  .mensaje p { margin:20px 0; }
+  .mensaje .contacto { font-weight:bold; color:#004d40; }
 
-  /* Música */
-  audio { display: none; }
-
-  /* Responsivo */
-  @media(max-width: 900px) {
-    .slides, .foto-principal img { height: 300px; }
-    .texto-foto h1 { font-size: 2rem; }
-    .texto-foto p { font-size: 1.2rem; }
-    .sobre { font-size: 4rem; letter-spacing: 1rem; }
-  }
-  @media(max-width: 500px) {
-    .slides, .foto-principal img { height: 200px; }
-    .texto-foto h1 { font-size: 1.5rem; }
-    .texto-foto p { font-size: 1rem; }
-    .sobre { font-size: 3rem; letter-spacing: 0.5rem; }
-    .mensaje { font-size: 1.2rem; }
-  }
 </style>
 </head>
 <body>
 
 <!-- Sobre inicial -->
-<div class="sobre" id="sobre">A & Y</div>
+<div id="sobre">
+  <div class="sobre-img" id="sobreImg">A & Y</div>
+</div>
 
 <!-- Pantalla principal -->
-<div class="principal" id="principal">
+<div id="principal">
 
-  <!-- Foto principal con nombres y fecha -->
+  <!-- Foto principal grande -->
   <div class="foto-principal">
     <img src="foto1.jpeg" alt="Foto principal">
     <div class="texto-foto">
@@ -163,8 +130,6 @@
   <div class="slideshow-container">
     <img class="slides" src="foto2.jpeg" alt="Foto 2">
     <img class="slides" src="foto3.jpeg" alt="Foto 3">
-    <!-- más fotos si quieres -->
-
     <span class="prev" onclick="changeSlide(-1)">&#10094;</span>
     <span class="next" onclick="changeSlide(1)">&#10095;</span>
   </div>
@@ -186,38 +151,39 @@
 </audio>
 
 <script>
-  const sobre = document.getElementById("sobre");
+  const sobreImg = document.getElementById("sobreImg");
   const principal = document.getElementById("principal");
+  const sobre = document.getElementById("sobre");
 
-  sobre.addEventListener("click", () => {
-    sobre.classList.add("abierto");
-    // Espera 1 segundo para mostrar principal
+  // Al hacer clic, animar sobre y mostrar principal
+  sobreImg.addEventListener("click", () => {
+    sobreImg.style.transform = "rotateX(90deg)";
     setTimeout(() => {
-      sobre.style.display = "none";
-      principal.style.display = "flex";
-    }, 1000);
+      sobre.style.display="none";
+      principal.style.display="flex";
+    },1000);
   });
 
   // Slideshow
-  let slideIndex = 0;
-  const slides = document.getElementsByClassName("slides");
+  let slideIndex=0;
+  const slides=document.getElementsByClassName("slides");
 
-  function showSlide(n) {
-    if (n >= slides.length) slideIndex = 0;
-    if (n < 0) slideIndex = slides.length - 1;
-    for (let i = 0; i < slides.length; i++) slides[i].style.display = "none";
-    slides[slideIndex].style.display = "block";
+  function showSlide(n){
+    if(n>=slides.length) slideIndex=0;
+    if(n<0) slideIndex=slides.length-1;
+    for(let i=0;i<slides.length;i++) slides[i].style.display="none";
+    slides[slideIndex].style.display="block";
   }
 
-  function changeSlide(n) {
-    slideIndex += n;
+  function changeSlide(n){
+    slideIndex+=n;
     showSlide(slideIndex);
   }
 
-  function autoSlide() {
+  function autoSlide(){
     slideIndex++;
     showSlide(slideIndex);
-    setTimeout(autoSlide, 4000);
+    setTimeout(autoSlide,4000);
   }
 
   showSlide(slideIndex);
